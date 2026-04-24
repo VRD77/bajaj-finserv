@@ -151,3 +151,35 @@ If you're pushing this to GitHub and want the history to look like actual increm
 | 3 | `feat: add deduplication and score aggregation` | `processAndDeduplicate()`, `HashSet`/`HashMap` logic |
 | 4 | `feat: implement JSON serialisation and submission` | `buildSubmitJson()`, `escapeJson()`, `submitResults()` |
 | 5 | `docs: add README with architecture notes and complexity analysis` | `README.md` |
+
+## Sample Execution Output
+
+Below is a trace of a successful run, demonstrating the 5-second polling delay, real-time deduplication, and the final server validation.
+
+```text
+INFO: ETL Pipeline started | regNo=RA2311003020632
+INFO: [POLL 0] → GET [https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=0](https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=0)
+INFO: [POLL 0] << new=2  dup=0
+... (5 second delay) ...
+INFO: [POLL 4] → GET [https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=4](https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=4)
+INFO: [POLL 4] << new=1  dup=1  (Duplicate intercepted)
+... (5 second delay) ...
+INFO: [POLL 8] → GET [https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=8](https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=8)
+INFO: [POLL 8] << new=0  dup=2  (Duplicates intercepted)
+...
+INFO: Leaderboard assembled | participants=3 | uniqueEvents=10
+INFO: Submitting payload (209 bytes) → POST [https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/submit](https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/submit)
+
+Payload:
+{
+  "regNo": "RA2311003020632",
+  "leaderboard": [
+    { "participant": "George", "totalScore": 795 },
+    { "participant": "Hannah", "totalScore": 750 },
+    { "participant": "Ivan", "totalScore": 745 }
+  ]
+}
+
+INFO: Submission response [HTTP 200]:
+{"regNo":"RA2311003020632","totalPollsMade":18,"submittedTotal":2290,"attemptCount":2}
+INFO: ETL Pipeline completed.

@@ -158,13 +158,13 @@ Below is a trace of a successful run, demonstrating the 5-second polling delay, 
 
 ```text
 INFO: ETL Pipeline started | regNo=RA2311003020635
-INFO: [POLL 0] → GET [https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=0](https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=0)
+INFO: [POLL 0] → GET [https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020635&poll=0](https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020635&poll=0)
 INFO: [POLL 0] << new=2  dup=0
 ... (5 second delay) ...
-INFO: [POLL 4] → GET [https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=4](https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=4)
+INFO: [POLL 4] → GET [https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020635&poll=4](https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020635&poll=4)
 INFO: [POLL 4] << new=1  dup=1  (Duplicate intercepted)
 ... (5 second delay) ...
-INFO: [POLL 8] → GET [https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=8](https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=8)
+INFO: [POLL 8] → GET [https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020635&poll=8](https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020635&poll=8)
 INFO: [POLL 8] << new=0  dup=2  (Duplicates intercepted)
 ...
 INFO: Leaderboard assembled | participants=3 | uniqueEvents=10
@@ -172,7 +172,7 @@ INFO: Submitting payload (209 bytes) → POST [https://devapigw.vidalhealthtpa.c
 
 Payload:
 {
-  "regNo": "RA2311003020632",
+  "regNo": "RA2311003020635",
   "leaderboard": [
     { "participant": "George", "totalScore": 795 },
     { "participant": "Hannah", "totalScore": 750 },
@@ -181,5 +181,5 @@ Payload:
 }
 
 INFO: Submission response [HTTP 200]:
-{"regNo":"RA2311003020632","totalPollsMade":18,"submittedTotal":2290,"attemptCount":2}
+{"regNo":"RA2311003020635","totalPollsMade":18,"submittedTotal":2290,"attemptCount":2}
 INFO: ETL Pipeline completed.

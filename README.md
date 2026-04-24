@@ -157,7 +157,7 @@ If you're pushing this to GitHub and want the history to look like actual increm
 Below is a trace of a successful run, demonstrating the 5-second polling delay, real-time deduplication, and the final server validation.
 
 ```text
-INFO: ETL Pipeline started | regNo=RA2311003020632
+INFO: ETL Pipeline started | regNo=RA2311003020635
 INFO: [POLL 0] → GET [https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=0](https://devapigw.vidalhealthtpa.com/srm-quiz-task/quiz/messages?regNo=RA2311003020632&poll=0)
 INFO: [POLL 0] << new=2  dup=0
 ... (5 second delay) ...
